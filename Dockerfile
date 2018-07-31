@@ -1,14 +1,13 @@
 FROM php:7.2-apache
 
 RUN apt-get update && apt-get install -y \
-        apt-utils \
         unzip \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
         libaio1 \
-    && docker-php-ext-install -j$(nproc) iconv gettext mbstring mysqli pgsql pdo_mysql pdo_pgsql \
+    && docker-php-ext-install -j$(nproc) iconv gettext mbstring mysqli pdo_mysql \
     && docker-php-ext-install -j$(nproc) curl ftp hash json session tokenizer xml xmlreader xmlrpc xmlwriter zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
